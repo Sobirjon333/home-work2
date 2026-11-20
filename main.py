@@ -1,5 +1,3 @@
-"""Консольное приложение для личного учёта расходов."""
-
 from __future__ import annotations
 
 import json
@@ -16,7 +14,6 @@ DATA_FILE = Path("expenses.json")
 
 
 def load_expenses() -> list[dict[str, str]]:
-    """Читает сохранённые расходы. При первом запуске создаёт пустой список."""
     if not DATA_FILE.exists():
         return []
     try:
@@ -29,13 +26,11 @@ def load_expenses() -> list[dict[str, str]]:
 
 
 def save_expenses(expenses: list[dict[str, str]]) -> None:
-    """Сохраняет список расходов в локальный JSON-файл."""
     with DATA_FILE.open("w", encoding="utf-8") as file:
         json.dump(expenses, file, ensure_ascii=False, indent=2)
 
 
 def add_expense(expenses: list[dict[str, str]]) -> None:
-    """Запрашивает данные о новом расходе и добавляет его в список."""
     category = input("Категория: ").strip().title()
     description = input("Описание: ").strip()
     if not category or not description:
@@ -64,7 +59,6 @@ def add_expense(expenses: list[dict[str, str]]) -> None:
 
 
 def show_summary(expenses: list[dict[str, str]]) -> None:
-    """Показывает общую сумму и распределение расходов по категориям."""
     if not expenses:
         print("Расходов пока нет.")
         return
@@ -80,7 +74,6 @@ def show_summary(expenses: list[dict[str, str]]) -> None:
 
 
 def delete_expense(expenses: list[dict[str, str]]) -> None:
-    """Удаляет расход по его идентификатору."""
     identifier = input("Введите ID расхода для удаления: ").strip()
     for index, item in enumerate(expenses):
         if item["id"] == identifier:
@@ -92,7 +85,6 @@ def delete_expense(expenses: list[dict[str, str]]) -> None:
 
 
 def main() -> None:
-    """Запускает меню приложения."""
     expenses = load_expenses()
     actions = {
         "1": lambda: add_expense(expenses),

@@ -1,5 +1,3 @@
-"""Небольшие проверки вспомогательных модулей."""
-
 from decimal import Decimal
 import unittest
 

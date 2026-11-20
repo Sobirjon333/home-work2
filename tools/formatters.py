@@ -1,5 +1,3 @@
-"""Функции, которые отвечают только за красивый вывод данных."""
-
 from __future__ import annotations
 
 from decimal import Decimal
@@ -7,12 +5,10 @@ from typing import Iterable, Mapping
 
 
 def format_money(amount: Decimal) -> str:
-    """Возвращает сумму в понятном формате рублей."""
     return f"{amount:,.2f}".replace(",", " ").replace(".", ",") + " ₽"
 
 
 def expenses_table(expenses: Iterable[Mapping[str, str]]) -> str:
-    """Строит простую таблицу расходов для терминала."""
     rows = list(expenses)
     if not rows:
         return "Расходов пока нет."
